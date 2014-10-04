@@ -19,7 +19,7 @@ Index
 <a name="philosphy"></a>
 ## Philosphy
 
-Time and water does not wait for anyone , nor does javascript. Javascript asynchronous is great in many ways but at times makes it harder to work with loops specially when you are doing heavy operations. 
+Time and water does not wait for anyone , nor does javascript. Javascript asynchronous nature is great in many ways but at times makes it harder to work with loops specially when you are doing heavy operations. 
 
 This is where promises comes into picture, unlike time and water when you make a promise with someone in real life, they will wait for you until you fulfill or break your promise. That what promises are in javascript.
 
@@ -63,3 +63,66 @@ What you just did is
 - Require the indicative module.
 - Initialized it , it is very important to initialize as it register and extend methods.
 - We called a method validate and passed rules and values to run validations on.
+
+
+<a name="custom-error-messages"></a>
+## Custom Error Messages
+
+Above error message doesn't seems to be good , and can be more descriptive. Let's make it so.
+
+
+```javascript
+
+	var validator = require('indicative');
+	validator.initialize();
+
+	var rules = {
+		'name' : 'required|alpha'
+	};
+
+	var values = {
+		'name': 'johny123'
+	};
+
+	var messages = {
+		'alpha': 'Name should only contain letters , numbers and special characters are not allowed'
+	};
+
+	// re call the same method
+
+	validator.validate(rules,values,messages).then(function(success){
+		console.log(success);
+	}).catch(function(err){
+		console.log(err);
+	}).done();
+
+```
+
+Expected output
+
+```
+	{ name: [ { rule: 'alpha', message: 'Name should only contain letters , numbers and special characters are not allowed' } ] }
+```
+
+Now you can see your custom message getting printed instead of a system generated one. But there is one problem , above error is not personalized enough as it contains a work called <i>Name</i> , which makes is non usable for other fields like username , lastname and so on.
+
+
+### Templating
+
+Indicative also allows templating which means you can also access field name, values , rules and arguments inside your custom message , here is an example.
+
+```javascript	
+	var messages = {
+		'alpha': '**%field%** should only contain letters , numbers and special characters are not allowed'
+	};
+```
+
+You can access following
+
+- %field% :- Field name
+- %value% :- Value
+- %arg0%  :- Validation rule argument 0 ( if exists ). Example after:2014-10-20 , writing %arg0% will return 2014-10-20.
+
+
+### Fields spefic messages
+
