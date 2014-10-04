@@ -4,7 +4,7 @@ var validations = require('./lib/validations.js');
 var messages = require('./lib/messages.js');
 var Qvalidate = Q.defer();
 
-var validator = {
+var indactive = {
 
 	__errors:{},
 	__methods: {},
@@ -108,13 +108,17 @@ var validator = {
 		if(typeof(self.__builds[f]) == 'undefined'){
 			self.__builds[f] = Q.defer();
 		}
-		if(!_.isUndefined(messages[f]) && !_.isUndefined(messages[f][item])){
-			gm = messages[f][item].replace('%field%',f).replace('%value%',v);
-		}
-		else if(typeof(messages[item]) == 'string'){
-			gm = messages[item].replace('%field%',f).replace('%value%',v);
-		}
-		else{
+		if(!_.isUndefined(messages)){
+			if(!_.isUndefined(messages[f]) && !_.isUndefined(messages[f][item])){
+				gm = messages[f][item].replace('%field%',f).replace('%value%',v);
+			}
+			else if(typeof(messages[item]) == 'string'){
+				gm = messages[item].replace('%field%',f).replace('%value%',v);
+			}
+			else{
+				gm = self.__messages[item].replace('%field%',f).replace('%value%',v);
+			}
+		}else{
 			gm = self.__messages[item].replace('%field%',f).replace('%value%',v);
 		}
 		_.each(self.__cache,function(v,k){
@@ -143,6 +147,4 @@ var validator = {
 	}
 };
 
-var indactive = {};
-indactive.validator = validator;
 module.exports = indactive;
