@@ -104,7 +104,7 @@ Expected output
 	{ name: [ { rule: 'alpha', message: 'Name should only contain letters , numbers and special characters are not allowed' } ] }
 ```
 
-Now you can see your custom message getting printed instead of a system generated one. But there is one problem , above error is not personalized enough as it contains a work called <i>Name</i> , which makes is non usable for other fields like username , lastname and so on.
+Now you can see your custom message getting printed instead of a system generated one. But there is one problem , above error is not personalized enough as it contains a word called <i>Name</i> , which makes it non usable for other fields like username , lastname and so on.
 
 
 ### Templating
@@ -113,7 +113,7 @@ Indicative also allows templating which means you can also access field name, va
 
 ```javascript	
 	var messages = {
-		'alpha': '**%field%** should only contain letters , numbers and special characters are not allowed'
+		'alpha': '<b>%field%</b> should only contain letters , numbers and special characters are not allowed'
 	};
 ```
 
