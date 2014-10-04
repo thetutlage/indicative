@@ -113,16 +113,91 @@ Indicative also allows templating which means you can also access field name, va
 
 ```javascript	
 	var messages = {
-		'alpha': '<b>%field%</b> should only contain letters , numbers and special characters are not allowed'
+		'alpha': '%field% should only contain letters , numbers and special characters are not allowed'
 	};
 ```
 
 You can access following
 
-- %field% :- Field name
-- %value% :- Value
-- %arg0%  :- Validation rule argument 0 ( if exists ). Example after:2014-10-20 , writing %arg0% will return 2014-10-20.
+- **%field%** :- Field name
+- **%value%** :- Value
+- **%arg0%**  :- Validation rule argument 0 ( if exists ). Example after:2014-10-20 , writing %arg0% will return 2014-10-20.
 
 
 ### Fields spefic messages
 
+You can also define messages for different fields.
+
+```javascript	
+
+	var validator = require('indicative');
+	validator.initialize();
+	var rules = {
+		'name' : 'required|alpha',
+		'lastname': 'required|alpha'
+	};
+
+	var values = {
+		'name': 'johny123',
+		'lastname': 'english80'
+	};
+	var messages = {
+		'name':{
+			'alpha': '%field% should only contain letters , numbers and special characters are not allowed'
+		},
+		'lastname':{
+			'alpha': 'Hope your lastname is simple and does not have weird special characters or numbers'
+		}
+	};
+
+	validator.validate(rules,values,messages).then(function(success){
+			console.log(success);
+	}).catch(function(err){
+		console.log(err);
+	}).done();
+```
+
+Expected output
+
+```
+{ name: 
+   [ { rule: 'alpha',
+       message: 'name should only contain letters , numbers and special characters are not allowed' } ],
+  lastname: 
+   [ { rule: 'alpha',
+       message: 'Hope your lastname is simple and does not have weird special characters or numbers' } ] }
+
+```
+
+Cool so far right ? let's make it even better.
+
+<a name="available-validation-rules"></a>
+
+## Available Valiation Rules
+
+I have covered plenty of usual validation rules.
+
+
+- **required**
+- **email**
+- **after**
+- **alpha**
+- **alpha_num**
+- **array**
+- **before**
+- **boolean**
+- **required_if**
+- **required_with**
+- **required_with_all**
+- **required_without**
+- **required_without_all**
+- **same**
+- **in**
+- **not_in**
+- **date**
+- **date_format**
+- **different**
+- **url**
+- **ip**
+- **range**
+- **integer**
