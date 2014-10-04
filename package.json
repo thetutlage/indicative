@@ -1,0 +1,16 @@
+{
+  "name": "indicative",
+  "version": "0.0.0",
+  "description": "Nodejs custom validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "amanvirk <virk.officials@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "moment": "^2.8.3",
+    "q": "^1.0.1"
+  }
+}
