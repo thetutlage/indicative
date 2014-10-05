@@ -2,7 +2,7 @@ var Q  = require('q');
 var _ = require('lodash');
 var validations = require('./lib/validations.js');
 var messages = require('./lib/messages.js');
-var Qvalidate = Q.defer();
+var Qvalidate = '';
 
 var indactive = {
 
@@ -18,7 +18,7 @@ var indactive = {
 	extend: function(rule,message,fn){
 		if(_.isFunction(fn) && !_.isUndefined(rule) && !_.isUndefined(message)){
 			this.__messages[rule] = message;
-			this.__methods[rule] = fn;			
+			this.__methods[rule] = fn;
 		}else{
 			var string = 'Unable to extend ';
 			string += !_.isUndefined(rule) ? rule: ' anonymous ';
@@ -29,6 +29,7 @@ var indactive = {
 
 	initialize: function(){
 		var self = this;
+		Qvalidate = Q.defer();
 		self.__errors = {};
 		self.__methods = {};
 		self.__exceptions = [];
@@ -62,7 +63,8 @@ var indactive = {
 			ix = ix+1;
 			if(ix == _.size(keys)){
 				if(_.size(self.__errors) > 0){
-					Qvalidate.reject(self.__errors);
+					var e = self.__errors;
+					Qvalidate.reject(e);
 				}else{
 					Qvalidate.resolve(values);
 				}

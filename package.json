@@ -1,8 +1,8 @@
 {
   "name": "indicative",
-  "version": "0.0.0",
-  "description": "Nodejs custom validator",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Nodejs promise based expressive validator",
+  "main": "indicative.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
