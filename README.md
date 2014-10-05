@@ -197,6 +197,7 @@ I have covered plenty of usual validation rules.
 - [date](#rule-date)
 - [date_format](#rule-date_format)
 - [different](#rule-different)
+- [equals](#rule-equals)
 - [url](#rule-url)
 - [ip](#rule-ip)
 - [range](#rule-range)
@@ -319,6 +320,12 @@ The field under validation must be a valid date and should match specified date 
 
 The field under validation should be different from the given `field`
 
+<a name="rule-equals"></a>
+
+#### equals:value
+
+The field under validation should be equal to given `value`
+
 <a name="rule-url"></a>
 
 #### url:field
@@ -342,4 +349,5 @@ The field under validation must be under defined range. Range must be integer or
 #### integer
 
 The field under validation must be a valid integer.
+
 
