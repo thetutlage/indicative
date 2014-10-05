@@ -13,7 +13,9 @@ Index
 - [Basic Usage](#basic-usage)
 - [Custom Error Messages](#custom-error-messages)
 - [Available Valiation Rules](#available-validation-rules)
-- [Custom Validation Rules](#custom-valiation-rules)
+- [Extending Indicative](#extending-indicative)
+- [Examples](#examples)
+- [Contributing](#contributing)
 
 
 <a name="philosphy"></a>
@@ -202,6 +204,8 @@ I have covered plenty of usual validation rules.
 - [ip](#rule-ip)
 - [range](#rule-range)
 - [integer](#rule-integer)
+- [min](#rule-min)
+- [max](#rule-max)
 
 
 <a name="rule-required"></a>
@@ -350,4 +354,101 @@ The field under validation must be under defined range. Range must be integer or
 
 The field under validation must be a valid integer.
 
+<a name="rule-min"></a>
 
+#### min:length
+
+The field under validation must be greater or equals to defined `length`
+
+<a name="rule-max"></a>
+
+#### max:length
+
+The field under validation must be less or equals to defined `length`
+
+
+<a name="extending-indicative"></a>
+
+## Extending Indicative
+
+It is really easy to extend and add your own validation to indicative. Make sure your custom methods
+should return promises , otherwise a new error will be thrown.
+
+```javascript
+	
+	var phone_no = function(value,args,message){
+		var deferred = Q.defer();
+		var phoneRe =/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)?\d{4}$/;
+		if(phoneRe.test(value)){
+			deferred.resolve();
+		}else{
+			deferred.reject(message);
+		}
+		return deferred.promise;
+	}
+
+	validator.extend('phone_no','Enter valid phone no',phone_no);
+
+```
+
+Let's discuss what happened this time
+
+- First we wrote a method `phone_no` which takes value, args and error message as parameters.
+- Next we wrote our own logic to validate a phone number and returned a promise depending upon validation passed or failed.
+- Next we used indicative method extend to register our phone_no method on rule named `phone_no` and passed our custom message.
+
+
+Here is the full example
+
+```javascript
+	var validator = require('../indicative');
+	var Q  = require('q');
+
+	validator.initialize();
+
+	var rules = {
+		'username': 'required|alpha|min:4',
+		'email': 'required|email',
+		'contact_no': 'phone_no',
+		'gender': 'in:Male,Female,Other',
+		'age':'range:18,70',
+		'password':'required|min:4'
+	};
+
+	var values = {
+		'username': 'nu',
+		'contact_no': '1201abs',
+		'email': 'nu@example.com',
+		'gender': 'M',
+		'age': 22
+	};
+
+	var phone_no = function(value,args,message){
+		var deferred = Q.defer();
+		var phoneRe =/^(()?\d{3}())?(-|\s)?\d{3}(-|\s)?\d{4}$/;
+		if(phoneRe.test(value)){
+			deferred.resolve();
+		}else{
+			deferred.reject(message);
+		}
+		return deferred.promise;
+	}
+	validator.extend('phone_no','Enter valid phone no',phone_no);
+	validator.validate(rules,values).then(function(success){
+		console.log(success);
+	}).catch(function(err){
+		console.log(err);
+	}).done();
+```
+<a name="examples"></a>
+
+## Examples
+
+You can access examples inside examples folder of this repo.
+
+
+<a name="contributing"></a>
+
+## Contributing
+
+Contribution is always welcomed, fork this repo to get started.
