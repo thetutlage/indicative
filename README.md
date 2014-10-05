@@ -205,141 +205,141 @@ I have covered plenty of usual validation rules.
 
 <a name="rule-required"></a>
 
-### required
+#### required
 
 The field under validation must be present and should contain some value
 
 <a name="rule-email"></a>
 
-### email
+#### email
 
 The field under validation must be formatted as an email-address.
 
 <a name="rule-after"></a>
 
-### after:date
+#### after:date
 
 The field under validation must be after a given date. Example after:2014-10-20
 
 <a name="rule-alpha"></a>
 
-### alpha
+#### alpha
 
 The field under validation must be letters only.
 
 <a name="rule-alpha_num"></a>
 
-### alpha_num
+#### alpha_num
 
 The field under validation can contain letters, numbers for combination of both.
 
 <a name="rule-array"></a>
 
-### array
+#### array
 
 The field under validation must be a valid array.
 
 <a name="rule-before"></a>
 
-### before:date
+#### before:date
 
 The field under validation must be before a given date. Example after:2014-10-20
 
 <a name="rule-boolean"></a>
 
-### boolean
+#### boolean
 
 The field under validation must be a valid boolean, `true` , `false`, `0` and `1` is treated as valid 
 array.
 
 <a name="rule-required_if"></a>
 
-### required_if:field,value
+#### required_if:field,value
 
 The field under validation must be present and should not be emptfy if `field` field is equal to `value`.
 
 <a name="rule-required_with"></a>
 
-### required_with:foo,bar,...
+#### required_with:foo,bar,...
 
 The field under validation must be present and should not be empty if any of the other fields are present.
 
 <a name="rule-required_with_all"></a>
 
-### required_with_all:foo,bar,...
+#### required_with_all:foo,bar,...
 
 The field under validation must be present and should not be empty if all of the other fields are present.
 
 <a name="rule-required_without"></a>
 
-### required_without:foo,bar,...
+#### required_without:foo,bar,...
 
 The field under validation must be present and should not be empty if any of the other fields are not present.
 
 <a name="rule-required_without_all"></a>
 
-### required_without_all:foo,bar,...
+#### required_without_all:foo,bar,...
 
 The field under validation must be present and should not be empty if all of the other fields are not present.
 
 <a name="rule-same"></a>
 
-### same:field
+#### same:field
 
 The field under validation must watch the given `field`
 
 <a name="rule-in"></a>
 
-### in:foo,bar,...
+#### in:foo,bar,...
 
 The field must be in one of the given list of values.
 
 <a name="rule-not_in"></a>
 
-### not_in:foo,bar,...
+#### not_in:foo,bar,...
 
 The field must not be in one of the given list of values.
 
 <a name="rule-date"></a>
 
-### date
+#### date
 
 The field under validation must be a valid date, MM/DD/YYYY, MM-DD-YYYY, YYYY-MM-DD,YYYY/MM/DD date 
 formats are supported by default.
 
 <a name="rule-date_format"></a>
 
-### date_format:format
+#### date_format:format
 
 The field under validation must be a valid date and should match specified date format.
 
 <a name="rule-different"></a>
 
-### different:field
+#### different:field
 
 The field under validation should be different from the given `field`
 
 <a name="rule-url"></a>
 
-### url:field
+#### url:field
 
 The field under validation must be a valid url. `http`, `https` and `ftp` is supported.
 
 <a name="rule-ip"></a>
 
-### ip
+#### ip
 
 The field under validation must be a valid ip address.
 
 <a name="rule-range"></a>
 
-### range:18,24
+#### range:18,24
 
 The field under validation must be under defined range. Range must be integer or float.
 
 <a name="rule-integer"></a>
 
-### integer
+#### integer
 
 The field under validation must be a valid integer.
 
