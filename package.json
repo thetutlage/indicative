@@ -1,6 +1,6 @@
 {
   "name": "indicative",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Nodejs promise based expressive validator",
   "main": "indicative.js",
   "scripts": {
