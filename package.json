@@ -1,12 +1,16 @@
 {
   "name": "indicative",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Nodejs promise based expressive validator",
   "main": "indicative.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "amanvirk <virk.officials@gmail.com>",
+  "repository" :{ 
+    "type" : "git",
+     "url" : "http://github.com/thetutlage/indicative.git"
+  },
   "license": "ISC",
   "dependencies": {
     "lodash": "^2.4.1",
